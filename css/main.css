@@ -1,0 +1,95 @@
+/*-------------------------------Information------------------------------
+Author: Rachael Hill
+Date: 06/12/2012
+Project: OPS Mobile App
+Client: Open Source Ecology
+/*-------------------------------General------------------------------*/
+.ui-body-a,.ui-overlay-a{
+  background: #c5d9b2;
+  color: /* #e5e4e4; */#000;
+  font-family: helvetica, arial, sans-serif;
+}
+.ui-page{
+  background: #c5d9b2;
+  color: #000;
+  font-family: helvetica, arial, sans-serif;
+}
+
+.ui-bar-a{
+  background: -webkit-linear-gradient(top, #617ca4, #062048); 
+}
+
+.ui-btn-up-a{
+  background: -webkit-linear-gradient(top, #617ca4, #062048); 
+  text-shadow: none;
+  outline: none;
+}
+
+.ui-btn-down-a{
+  background: #062048;
+  outline: none; 
+}
+
+.ui-btn-up-b{
+  background: -webkit-linear-gradient(top, #1a407c, #062048); 
+  text-shadow: none;
+}
+
+.ui-btn-down-b{
+  background: #062048; 
+}
+
+.ui-btn-up-z{
+    background: -webkit-linear-gradient(top, #1df327, #0f822a);
+    text-decoration: none;
+    font: 1em helvetica, arial, sans-serif;
+    font-weight: 900;
+    color: #000;
+    text-shadow: none;
+}
+
+.ui-btn-down-z{
+    background: #0f822a;
+    text-decoration: none;
+    font: 1em helvetica, arial, sans-serif;
+    font-weight: 900;
+    color: #000;
+}
+/*-------------------------------Home------------------------------*/
+#quote{
+  font: italic .900em bold Baskerville, Helvetica, Arial;
+  text-align: center;
+  width: 15.714em;
+  position: absolute;
+  top: 2.3em;
+  right: .5em;
+}
+
+#home-content{
+  text-indent: 1em;
+}
+
+/*-------------------------------Join------------------------------*/
+.join-content{
+  font-size: .900em;
+}
+
+.join-btn{
+  width: 9em;
+  margin: 0 auto;
+}
+
+/*-------------------------------Details------------------------------*/
+.details{
+  position: relative;
+  bottom: 120px;
+  left: 100px;
+  font-size: .900em;
+  width: 150px;
+}
+
+#email{
+    font-size: .900em;
+    list-style: none;
+    padding-right: 10px;
+}
