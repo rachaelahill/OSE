@@ -55,6 +55,22 @@ Client: Open Source Ecology
     font-weight: 900;
     color: #000;
 }
+
+.ui-icon-nav-home{
+  background-image: url(../img/nav_home.png);
+}
+
+.ui-icon-nav-join{
+  background-image: url(../img/nav_join.png);
+}
+
+.ui-icon-nav-twitter{
+  background-image: url(../img/nav_twitter.png);
+}
+
+.ui-icon-nav-video{
+  background-image: url(../img/nav_video.png);
+}
 /*-------------------------------Home------------------------------*/
 #quote{
   font: italic .900em bold Baskerville, Helvetica, Arial;
