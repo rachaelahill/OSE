@@ -82,14 +82,21 @@ Client: Open Source Ecology
 /*-------------------------------Details------------------------------*/
 .details{
   position: relative;
-  bottom: 120px;
+  bottom: 170px;
   left: 100px;
   font-size: .900em;
   width: 150px;
+}
+
+#image{
+  outline-style: solid;
 }
 
 #email{
     font-size: .900em;
     list-style: none;
     padding-right: 10px;
+    position: relative;
+    right: 44px;
+    bottom: 10px;
 }
