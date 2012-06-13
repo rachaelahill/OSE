@@ -1,12 +1,12 @@
 /*-------------------------------Information------------------------------
 Author: Rachael Hill
-Date: 06/12/2012
+Date: 06/13/2012
 Project: OPS Mobile App
 Client: Open Source Ecology
-/*-------------------------------General------------------------------*/
+/*-------------------------------Themes------------------------------*/
 .ui-body-a,.ui-overlay-a{
   background: #c5d9b2;
-  color: /* #e5e4e4; */#000;
+  color: #000;
   font-family: helvetica, arial, sans-serif;
 }
 .ui-page{
@@ -40,20 +40,22 @@ Client: Open Source Ecology
 }
 
 .ui-btn-up-z{
-    background: -webkit-linear-gradient(top, #1df327, #0f822a);
+    background: -webkit-linear-gradient(top, #f2d399, #bfa169);
     text-decoration: none;
     font: 1em helvetica, arial, sans-serif;
     font-weight: 900;
     color: #000;
     text-shadow: none;
+    border: .063em solid #a6874e;
 }
 
 .ui-btn-down-z{
-    background: #0f822a;
+    background: #a6874e;
     text-decoration: none;
     font: 1em helvetica, arial, sans-serif;
     font-weight: 900;
     color: #000;
+    border: .063em solid #a6874e;
 }
 
 .ui-icon-nav-home{
@@ -71,6 +73,7 @@ Client: Open Source Ecology
 .ui-icon-nav-video{
   background-image: url(../img/nav_video.png);
 }
+
 /*-------------------------------Home------------------------------*/
 #quote{
   font: italic .900em bold Baskerville, Helvetica, Arial;
@@ -86,9 +89,14 @@ Client: Open Source Ecology
   text-align: center;
 }
 
-/*-------------------------------Join------------------------------*/
-.join-content{
+/*-------------------------------Donate------------------------------*/
+#donateList li{
   font-size: .900em;
+  padding-top: 7px;
+}
+
+#statement{
+  text-align: center;
 }
 
 .join-btn{
