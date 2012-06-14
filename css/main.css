@@ -129,3 +129,23 @@ Client: Open Source Ecology
 .title{
   text-align: center;
 }
+
+.detailHead{
+  position: absolute;
+  top: 80px;
+  left: 170px;
+  list-style: none;
+}
+
+.detailHead,p,h1{
+  padding: 0;
+  margin: 0;
+}
+
+
+
+
+
+
+
+
