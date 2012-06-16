@@ -74,7 +74,7 @@
 			</header>
 
 			<section data-role="content">	
-				<form name="contactForm" method="post" action="emailForm.php">                   
+				<form name="contactForm" method="post" action="incs/emailForm.php">                   
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
                         <label for="textinput1">
@@ -96,13 +96,11 @@
                         <label for="textarea1">
                             Message:
                         </label>
-                        <textarea id="mess" name="mess" placeholder="">
+                        <textarea id="mess" name="mess" value="">
                         </textarea>
                     </fieldset>
                 </div>
-                <input id="emailTo" name="emailTo" value="rachaelann.hill@gmail.com" type="hidden" />
-                <input value="Submit" type="submit" data-theme="z" />
-
+                <input value="Send" type="submit" data-theme="z" id="send" />
 				</form>
 			
 			<footer data-role="footer" data-position="fixed">
@@ -319,11 +317,11 @@
 			<section data-role="content">
 			   <h1>Global Village Construction Set</h1>	
 				<ul data-role="listview" data-inset="true">
-          <li data-theme="c"><a href="#agriDetail" data-transition="fade"><h3>Agriculture</h3></a></li>
-				  <li data-theme="c"><a href="#enerDetail" data-transition="fade"><h3>Energy</h3></a></li>	
-				  <li data-theme="c"><a href="#induDetail" data-transition="fade"><h3>Industry</h3></a></li>	
-				  <li data-theme="c"><a href="#materDetail" data-transition="fade"><h3>Materials</h3></a></li>	
-				  <li data-theme="c"><a href="#tranDetail" data-transition="fade"><h3>Transportation</h3></a></li>	
+          <li data-theme="c"><a href="#agriDetail" data-transition="fade" id="agri"><h3>Agriculture</h3></a></li>
+				  <li data-theme="c"><a href="#enerDetail" data-transition="fade" id="ener"><h3>Energy</h3></a></li>	
+				  <li data-theme="c"><a href="#induDetail" data-transition="fade" id="indu"><h3>Industry</h3></a></li>	
+				  <li data-theme="c"><a href="#materDetail" data-transition="fade" id="mate"><h3>Materials</h3></a></li>	
+				  <li data-theme="c"><a href="#tranDetail" data-transition="fade" id="tran"><h3>Transportation</h3></a></li>	
 				</ul>
 			</section>
 			
@@ -340,18 +338,19 @@
 		</article>
 		<!-- +++++++++  end GVCS Page  +++++++++++ -->
 		
-		<!-- ==========  Agriculture Details Page  ============= -->
-		<article id="agriDetail" data-role="page">
+		<!-- ==========  GVCS Details Page  ============= -->
+		<article id="gvcsDetails" data-role="page">
 			
 			<header data-role="header" data-theme="a">
 				<a data-rel="back" data-theme="b">Back</a>
 				<h2>GVCS</h2>
 			</header>
 
-			<section data-role="content">
-			   <h1 class="title">Agriculture</h1>	
-				<ul data-role="listview" data-inset="true">
-          <li data-theme="c"><a href="#balerDetail" data-transition="fade">
+			<section data-role="content" id="content">
+			   <h1 class="title"></h1>	
+				<ul data-role="listview" data-inset="true" class="gvcsList">
+          <!--
+<li data-theme="c"><a href="#balerDetail" data-transition="fade">
             <img src="img/agri/thumb/baler.png" alt="Baler Thumbnail" width="100" height="100" /><h3>Baler</h3><p>Pre-Prototyping</p></a>
           </li>
 				  <li data-theme="c"><a href="#bakeryDetail" data-transition="fade">
@@ -381,12 +380,13 @@
 				  <li data-theme="c"><a href="#tractorDetail" data-transition="fade">
 				    <img src="img/agri/thumb/tractor.png" alt="Tractor" /><h3>Tractor</h3><p>Documentation</p></a>
 				  </li>
-				  <li data-theme="c"><a href="#wellDrillDetail" data-transition="fade">
+				  <li data-theme="c"><a href="#trenchDetail" data-transition="fade">
 				    <img src="img/agri/thumb/trencher.png" alt="Trencher" /><h3>Trencher</h3><p>Pre-Development</p></a>
 				  </li>	
-				  <li data-theme="c"><a href="#materDetail" data-transition="fade">
+				  <li data-theme="c"><a href="#wellDetail" data-transition="fade">
 				    <img src="img/agri/thumb/wellDrilling.png" alt="Well-Drilling Rig" /><h3>Well-Drilling Rig</h3><p>Pre-Development</p></a>
 				  </li>	
+-->
 				</ul>
 			</section>
 			
@@ -401,24 +401,25 @@
 			</footer>
 		
 		</article>
-		<!-- +++++++++  end Agriculture Details Page  +++++++++++ -->
+		<!-- +++++++++  end GVCS Details Page  +++++++++++ -->
 
-		<!-- ==========  GVCS Details Page  ============= -->
-		<article id="balerDetail" data-role="page">
+		<!-- ==========  GVCS Item Details Page  ============= -->
+		<article id="itemDetails" data-role="page">
 			
 			<header data-role="header" data-theme="a">
 				<a data-rel="back" data-theme="b">Back</a>
 				<h2>GVCS</h2>
 			</header>
 
-			<section data-role="content">
-			   <img src="img/agri/baler.png" alt="Baler Image" width="140" height="90" />
+			<section data-role="content" class="gvcsItemDetail">
+<!-- 			   <img src="img/agri/baler.png" alt="Baler Image" width="140" height="90" /> -->
 			   <div class="detailHead">
-			     <h1 id="titleDetail">Baler</h1>
-			     <p id="statusDetail">Pre-Prototyping</p>
+			     <h1 id="titleDetail"></h1>
+			     <p id="statusDetail"></p>
 			   </div><!-- /detailHead -->
 			   
-			   <h2>Uses:</h2>
+			   <!--
+<h2>Uses:</h2>
 				<ul data-role="listview" data-inset="true">
           <li data-theme="c"><a href="#inducDetail" data-transition="fade">
             <img src="img/other/inductFurn.png" alt="Induction Furnace" /><h3>Induction Furnace</h3><p>Pre-Development</p></a>
@@ -446,6 +447,7 @@
 				    <img src="img/agri/hayRake.png" alt="Hay Rake" /><h3>Pelletizer</h3><p>Research</p></a>
 				  </li>	
 				</ul>
+-->
 			</section>
 			
 			<footer data-role="footer" data-position="fixed">
@@ -459,7 +461,7 @@
 			</footer>
 		
 		</article>
-		<!-- +++++++++  end GVCS Details Page  +++++++++++ -->
+		<!-- +++++++++  end GVCS Item Details Page  +++++++++++ -->
 		
 		
 <!-- ***************************************** end Global Village Construction Set *************************************** -->		
@@ -481,6 +483,31 @@
 				<p class="join-btn"><a data-role="button" data-inline="true" data-transition="fade" data-theme="z" href="http://opensourceecology.org/join.php">
                     Donate Now
                 </a></p>
+			</section>
+			
+			<footer data-role="footer" data-position="fixed">
+				<nav data-role="navbar" data-theme="a">
+					<ul>
+						<li><a href="#home"><img src="img/navHome.png" /><br />OSE</a></li>
+						<li><a href="#gvcs"><img src="img/navGVCS.png" /><br />GVCS</a></li>
+						<li><a href="#donate"><img src="img/navDonate.png" /><br />Donate</a></li>
+					</ul>
+				</nav><!-- /navbar -->
+			</footer>
+		
+		</article>
+		<!-- +++++++++  end Donate Page  +++++++++++ -->
+		
+		<!-- ==========  Thank You Page  ============= -->
+		<article id="thanks" data-role="page">
+
+			<header data-role="header" data-theme="a">
+				<a data-rel="back" id="back" data-theme="b">Back</a>
+				<h2>Message Sent</h2>
+			</header>
+
+			<section data-role="content">	
+				<h1>Thank you! Your message has been sent.</h1>
 			</section>
 			
 			<footer data-role="footer" data-position="fixed">

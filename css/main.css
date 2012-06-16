@@ -1,6 +1,6 @@
 /*-------------------------------Information------------------------------
 Author: Rachael Hill
-Date: 06/13/2012
+Date: 06/16/2012
 Project: OPS Mobile App
 Client: Open Source Ecology
 /*-------------------------------Themes------------------------------*/
@@ -111,7 +111,6 @@ Client: Open Source Ecology
 /*-------------------------------Donate------------------------------*/
 #donateList li{
   font-size: .900em;
-  padding-top: 7px;
 }
 
 #statement{
