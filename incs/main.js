@@ -192,14 +192,17 @@ if(gvcsDetailID == this._id){
     return false;   
   });
   
-//Thank you page for Email  
-  $('#send').on('tap', function(){
-    $.mobile.changePage('#thanks');
-    $('#name').val(''); 
-    $('#email').val('');  
-    $('#mess').val('');  
- 
-  });
+//Thank you page for Email 
+  $('#emailForm').submit(function(){
+    $('#send').on('tap', function(){
+      $.mobile.changePage('#thanks');
+      $('#name').val(''); 
+      $('#email').val('');  
+      $('#mess').val('');  
+   
+    });
+    return false;
+   }); 
   
 //Add to MongoHQ
   function mongoCreateDocument(){
