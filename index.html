@@ -65,6 +65,60 @@
 		</article>
 		<!-- +++++++++  end Home Page  +++++++++++ -->
 		
+		<!-- ==========  Email Form Details  ============= -->
+		<article id="emailForm" data-role="page">
+			
+			<header data-role="header" data-theme="a">
+				<a data-rel="back" data-theme="b">Back</a>
+				<h2>Email</h2>
+			</header>
+
+			<section data-role="content">	
+				<form name="contactForm" method="post" action="emailForm.php">                   
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="textinput1">
+                            Name:
+                        </label>
+                        <input id="name" name="name" placeholder="ex: John Smith" value="" type="text" />
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="textinput2">
+                            Email:
+                        </label>
+                        <input id="email" name="email" placeholder="ex: johnsmith@sample.com" value="" type="email" />
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="textarea1">
+                            Message:
+                        </label>
+                        <textarea id="mess" name="mess" placeholder="">
+                        </textarea>
+                    </fieldset>
+                </div>
+                <input id="emailTo" name="emailTo" value="rachaelann.hill@gmail.com" type="hidden" />
+                <input value="Submit" type="submit" data-theme="z" />
+
+				</form>
+			
+			<footer data-role="footer" data-position="fixed">
+  			<nav data-role="navbar" data-theme="a">
+					<ul>
+						<li><a href="#home"><img src="img/navHome.png" /><br />OSE</a></li>
+						<li><a href="#gvcs"><img src="img/navGVCS.png" /><br />GVCS</a></li>
+						<li><a href="#donate"><img src="img/navDonate.png" /><br />Donate</a></li>
+					</ul>
+				</nav><!-- /navbar -->
+			</footer>
+		
+		</article>
+		<!-- +++++++++  end Email Form Details  +++++++++++ -->
+
+		
 		<!-- ==========  Marcin Jakubowski Details  ============= -->
 		<article id="mjDetail" data-role="page">
 			
@@ -75,10 +129,17 @@
 
 			<section data-role="content">	
 				<img src="img/team/mj.jpg" alt="Marcin Jakubowski" width="100" height="100" id="image"/>	
-				<ul id="email">
+				<p>
+				  <a data-role="button" data-inline="true" data-transition="fade" data-theme="z" href="#emailForm">
+              Email
+          </a>
+        </p>
+				<!--
+<ul id="email">
 				  <li>Contact:</li>
 				  <li><a href="mailto:opensourceecology@gmail.com">Marcin Jakubowski</a></li>
 				</ul>
+-->
 
 				<ul class="details">
 				  <li>Born in Poland</li>
@@ -139,6 +200,7 @@
 		</article>
 		<!-- +++++++++  end Isaiah Saxon Details  +++++++++++ -->
 		
+				
 		<!-- ==========  Adrian Hong Details  ============= -->
 		<article id="ahDetail" data-role="page">
 			
@@ -290,40 +352,40 @@
 			   <h1 class="title">Agriculture</h1>	
 				<ul data-role="listview" data-inset="true">
           <li data-theme="c"><a href="#balerDetail" data-transition="fade">
-            <img src="img/agri/baler.png" alt="Baler" /><h3>Baler</h3><p>Pre-Prototyping</p></a>
+            <img src="img/agri/thumb/baler.png" alt="Baler Thumbnail" width="100" height="100" /><h3>Baler</h3><p>Pre-Prototyping</p></a>
           </li>
 				  <li data-theme="c"><a href="#bakeryDetail" data-transition="fade">
-				    <img src="img/agri/bakeryOven.png" alt="Bakery Oven" /><h3>Bakery Oven</h3><p>Research</p></a>
+				    <img src="img/agri/thumb/bakeryOven.png" alt="Bakery Oven" /><h3>Bakery Oven</h3><p>Research</p></a>
 				  </li>	
 				  <li data-theme="c"><a href="#dairyDetail" data-transition="fade">
-				    <img src="img/agri/dairyMilker.png" alt="Dairy Milker" /><h3>Dairy Milker</h3><p>Research</p></a>
+				    <img src="img/agri/thumb/dairyMilker.png" alt="Dairy Milker" /><h3>Dairy Milker</h3><p>Research</p></a>
 				  </li>	
 				  <li data-theme="c"><a href="#hayCutDetail" data-transition="fade">
-				    <img src="img/agri/hayCutter.png" alt="Hay Cutter" /><h3>Hay Cutter</h3><p>Research</p></a>
+				    <img src="img/agri/thumb/hayCutter.png" alt="Hay Cutter" /><h3>Hay Cutter</h3><p>Research</p></a>
 				  </li>	
 				  <li data-theme="c"><a href="#hayRakDetail" data-transition="fade">
-				    <img src="img/agri/hayRake.png" alt="Hay Rake" /><h3>Hay Rake</h3><p>Research</p></a>
+				    <img src="img/agri/thumb/hayRake.png" alt="Hay Rake" /><h3>Hay Rake</h3><p>Research</p></a>
 				  </li>	
 				  <li data-theme="c"><a href="#microtracDetail" data-transition="fade">
-				    <img src="img/agri/microtractor.png" alt="Microtractor" /><h3>Microtractor</h3><p>Prototyping</p></a>
+				    <img src="img/agri/thumb/microtractor.png" alt="Microtractor" /><h3>Microtractor</h3><p>Prototyping</p></a>
 				  </li>
 				  <li data-theme="c"><a href="#seederDetail" data-transition="fade">
-				    <img src="img/agri/seeder.png" alt="Seeder" /><h3>Seeder</h3><p>Research</p></a>
+				    <img src="img/agri/thumb/seeder.png" alt="Seeder" /><h3>Seeder</h3><p>Research</p></a>
 				  </li>	
 				  <li data-theme="c"><a href="#soilDetail" data-transition="fade">
-				    <img src="img/agri/soilPolverizer.png" alt="Soil Polverizer" /><h3>Soil Polverizer</h3><p>Documentation</p></a>
+				    <img src="img/agri/thumb/soilPolverizer.png" alt="Soil Polverizer" /><h3>Soil Polverizer</h3><p>Documentation</p></a>
 				  </li>	
 				  <li data-theme="c"><a href="#spaderDetail" data-transition="fade">
-				    <img src="img/agri/spader.png" alt="Spader" /><h3>Spader</h3><p>Research</p></a>
+				    <img src="img/agri/thumb/spader.png" alt="Spader" /><h3>Spader</h3><p>Research</p></a>
 				  </li>	
 				  <li data-theme="c"><a href="#tractorDetail" data-transition="fade">
-				    <img src="img/agri/tractor.png" alt="Tractor" /><h3>Tractor</h3><p>Documentation</p></a>
+				    <img src="img/agri/thumb/tractor.png" alt="Tractor" /><h3>Tractor</h3><p>Documentation</p></a>
 				  </li>
 				  <li data-theme="c"><a href="#wellDrillDetail" data-transition="fade">
-				    <img src="img/agri/trencher.png" alt="Trencher" /><h3>Trencher</h3><p>Pre-Development</p></a>
+				    <img src="img/agri/thumb/trencher.png" alt="Trencher" /><h3>Trencher</h3><p>Pre-Development</p></a>
 				  </li>	
 				  <li data-theme="c"><a href="#materDetail" data-transition="fade">
-				    <img src="img/agri/wellDrilling.png" alt="Well-Drilling Rig" /><h3>Well-Drilling Rig</h3><p>Pre-Development</p></a>
+				    <img src="img/agri/thumb/wellDrilling.png" alt="Well-Drilling Rig" /><h3>Well-Drilling Rig</h3><p>Pre-Development</p></a>
 				  </li>	
 				</ul>
 			</section>
@@ -341,7 +403,7 @@
 		</article>
 		<!-- +++++++++  end Agriculture Details Page  +++++++++++ -->
 
-		<!-- ==========  Baler Details Page  ============= -->
+		<!-- ==========  GVCS Details Page  ============= -->
 		<article id="balerDetail" data-role="page">
 			
 			<header data-role="header" data-theme="a">
@@ -352,8 +414,8 @@
 			<section data-role="content">
 			   <img src="img/agri/baler.png" alt="Baler Image" width="140" height="90" />
 			   <div class="detailHead">
-			     <h1>Baler</h1>
-			     <p>Pre-Prototyping</p>
+			     <h1 id="titleDetail">Baler</h1>
+			     <p id="statusDetail">Pre-Prototyping</p>
 			   </div><!-- /detailHead -->
 			   
 			   <h2>Uses:</h2>
@@ -397,31 +459,7 @@
 			</footer>
 		
 		</article>
-		<!-- +++++++++  end Baler Details Page  +++++++++++ -->
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		<!-- +++++++++  end GVCS Details Page  +++++++++++ -->
 		
 		
 <!-- ***************************************** end Global Village Construction Set *************************************** -->		
@@ -467,5 +505,5 @@
   	</body>
 
   	<!-- Custom Logic -->
-	<script src="inc/js/main.js"></script>
+	<script src="incs/main.js"></script>
 </html>

@@ -39,6 +39,25 @@ Client: Open Source Ecology
   background: #062048; 
 }
 
+.ui-btn-up-s{
+    background: -webkit-linear-gradient(top, #ABC8E2, #375D81);
+    text-decoration: none;
+    font: 1em helvetica, arial, sans-serif;
+    font-weight: 900;
+    color: #000;
+    text-shadow: none;
+    border: .063em solid #272829;
+}
+
+.ui-btn-down-s{
+    background: #272829;
+    text-decoration: none;
+    font: 1em helvetica, arial, sans-serif;
+    font-weight: 900;
+    color: #fff;
+    border: .063em solid #272829;
+}
+
 .ui-btn-up-z{
     background: -webkit-linear-gradient(top, #f2d399, #bfa169);
     text-decoration: none;
@@ -115,15 +134,6 @@ Client: Open Source Ecology
 
 #image{
   outline-style: solid;
-}
-
-#email{
-    font-size: .900em;
-    list-style: none;
-    padding-right: .714em;
-    position: relative;
-    right: 3.143em;
-    bottom: .714em;
 }
 
 .title{
