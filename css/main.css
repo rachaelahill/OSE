@@ -1,6 +1,6 @@
 /*-------------------------------Information------------------------------
 Author: Rachael Hill
-Date: 06/16/2012
+Date: 06/18/2012
 Project: OPS Mobile App
 Client: Open Source Ecology
 /*-------------------------------Themes------------------------------*/
@@ -135,18 +135,18 @@ Client: Open Source Ecology
   outline-style: solid;
 }
 
-.title{
+.title, #ovrView{
   text-align: center;
 }
 
-.detailHead{
+#headingItem{
   position: absolute;
-  top: 80px;
+  top: 50px;
   left: 170px;
   list-style: none;
 }
 
-.detailHead,p,h1{
+#headingItem,p,h1{
   padding: 0;
   margin: 0;
 }

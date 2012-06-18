@@ -1,5 +1,11 @@
 $(document).ready(function() {
-  var gvcsDetailID;
+  var gvcsRawData;
+  var itemClickedOn;
+  var headingItems = $('#headingItem');
+  var imgItems = $('#imgItem');
+  var ovrView = $('#ovrView');
+  var use = $('#useItem');
+  var worksWith = $('#worksItem');
   
 //Returns gvcsList(Agri) from MongoHQ
   function mongoGetGVCSList(){
@@ -11,8 +17,9 @@ $(document).ready(function() {
         "_apikey":"xoxqi26x0rwv9loxhdfa"
       },
       success: function(r) {
-        console.log("Mongo: success",r[1].title);
+/*         console.log("Mongo: success",r); */
         createGVCSList(r);
+        gvcsRawData = r;
       },
       error: function(data) {
         console.log("Mongo: fail",data);
@@ -21,7 +28,78 @@ $(document).ready(function() {
      });
   }
   
+   function mongoGetGVCSDetails(){
+    $.ajax({
+      url: 'https://api.mongohq.com/databases/oseDB/collections/gvcsDetails/documents',
+      type: 'GET',
+      dataType: 'json',
+      data: {
+        "_apikey":"xoxqi26x0rwv9loxhdfa"
+      },
+      success: function(r) {
+/*         console.log("Mongo: success",r); */
+        createGVCSDetail(r);
+        itemClickedOn = r;
+      },
+      error: function(data) {
+        console.log("Mongo: fail",data);
+        return false;
+      }
+     });
+  }
+  
+//On Click Agriculture  
+  $('#agri').on('tap', function(){
+    $('.title').html('<h1>Agriculture</h1>');
+    mongoGetGVCSList();
+    $.mobile.changePage('#gvcsDetails');
+    return false;   
+  });
+  
+//List of GVCS
+  function createGVCSList(l){
+    $('.gvcsList').empty();
+    $(l).each(function(){
+      $('.gvcsList').append('<li data-theme="c" data-transition="fade" class="gvcsData"><a href="#" data-id="'+this._id.$oid+'"><img src="'+this.imgSrc+'" alt="Thumbnail" width="100" height="100" /><h3>'+this.name+'</h3><p>'+this.status+'</p></a></li>'); 
+    });
+    
+    console.log('Name: '+l[0].name);
+    console.log('ID: '+l[0]._id.$oid);
+    
+    $('.gvcsList').listview('refresh');
+    
+//On Click Details    
+    console.log("at this very moment I am attacking the click to *ALL* list items");
+    $('.gvcsData a').on('tap', function(){
+        console.log('clicked');
+        var clickedOn = $(this).data('id');
+      $(gvcsRawData).each(function(){
+        if(this._id.$oid == clickedOn){
+          console.log(this.name);
+          console.log('item details would show here', this);
+          createGVCSDetail(this);
+/*           mongoGetGVCSDetails(); */
+          $.mobile.changePage('#itemDetails');
+        }
+      });
+      return false;   
+    });
+  }
+
+//Detail page of GVCS
+  function createGVCSDetail(d){ 
+      console.log('Details: ');
+        console.log(d);
+        console.log(d.largeImg);
+          imgItems.attr('src', ''+d.largeImg+''); 
+          headingItems.html('<h3>'+d.name+'</h3><p>'+d.status+'</p>');
+          ovrView.html('<p>'+d.ovrView+'</p>');
+        
+  } 
+
+  
 //Returns gvcsEne from MongoHQ
+/*
   function mongoGetGVCSEne(){
     $.ajax({
       url: 'https://api.mongohq.com/databases/oseDB/collections/gvcsEne/documents',
@@ -40,8 +118,10 @@ $(document).ready(function() {
       }
      });
   }
+*/
   
 //Returns gvcsInd from MongoHQ
+/*
   function mongoGetGVCSInd(){
     $.ajax({
       url: 'https://api.mongohq.com/databases/oseDB/collections/gvcsInd/documents',
@@ -60,8 +140,10 @@ $(document).ready(function() {
       }
      });
   }
+*/
   
 //Returns gvcsMat from MongoHQ
+/*
   function mongoGetGVCSMat(){
     $.ajax({
       url: 'https://api.mongohq.com/databases/oseDB/collections/gvcsMat/documents',
@@ -80,9 +162,11 @@ $(document).ready(function() {
       }
      });
   }
+*/
   
 //Returns gvcsTran from MongoHQ
-  function mongoGetGVCSTran(){
+ /*
+ function mongoGetGVCSTran(){
     $.ajax({
       url: 'https://api.mongohq.com/databases/oseDB/collections/gvcsTran/documents',
       type: 'GET',
@@ -100,9 +184,11 @@ $(document).ready(function() {
       }
      });
   }
+*/
 
 //Returns GVCSDetails  
-  function mongoGetGVCSDetails(){
+ /*
+ function mongoGetGVCSDetails(){
     $.ajax({
       url: 'https://api.mongohq.com/databases/oseDB/collections/gvcsDetails/documents',
       type: 'GET',
@@ -111,7 +197,7 @@ $(document).ready(function() {
         "_apikey":"xoxqi26x0rwv9loxhdfa"
       },
       success: function(r) {
-/*         console.log("Mongo: success",r); */
+        console.log("Mongo: success",r);
         createGVCSDetail(r);
         gvcsDetailID = r;
       },
@@ -121,91 +207,70 @@ $(document).ready(function() {
       }
      });
   }
+*/
   
-//List of GVCS
-  function createGVCSList(l){
-    $('.gvcsList').empty();
-    $(l).each(function(){
-      $('.gvcsList').append('<li data-theme="c" data-transition="fade" class="gvcsData"><a href="#" data-id="'+this._id+'"><img src="'+this.imgSrc+'" alt="Thumbnail" width="100" height="100" /><h3>'+this.name+'</h3><p>'+this.status+'</p></a></li>'); 
-    });
-    $('.gvcsList').listview('refresh');
-  }
-  
-//On Click Agriculture  
-  $('#agri').on('tap', function(){
-    $('.title').html('<h1>Agriculture</h1>');
-    mongoGetGVCSList();
-    $.mobile.changePage('#gvcsDetails');
-    return false;   
-  });
+
   
 //On Click Energy
-  $('#ener').on('tap', function(){
+  /*
+$('#ener').on('tap', function(){
     $('.title').html('<h1>Energy</h1>');
     mongoGetGVCSEne();
     $.mobile.changePage('#gvcsDetails');
     return false;   
   });
+*/
   
 //On Click Industry
-  $('#indu').on('tap', function(){
+  /*
+$('#indu').on('tap', function(){
     $('.title').html('<h1>Industry</h1>');
     mongoGetGVCSInd();
     $.mobile.changePage('#gvcsDetails');
     return false;   
   });
+*/
   
 //On Click Materials
-  $('#mate').on('tap', function(){
+  /*
+$('#mate').on('tap', function(){
     $('.title').html('<h1>Materials</h1>');
     mongoGetGVCSMat();
     $.mobile.changePage('#gvcsDetails');
     return false;   
   });
+*/
   
 //On Click Transportation
-  $('#tran').on('tap', function(){
+  /*
+$('#tran').on('tap', function(){
     $('.title').html('<h1>Transportation</h1>');
     mongoGetGVCSTran();
     $.mobile.changePage('#gvcsDetails');
     return false;   
   });
-  
-//Detail page of GVCS
-  function createGVCSDetail(d){ 
-    $(d).each(function(){
-      $('.gvcsItemDetail').append('<img src="'+this.imgSrc+'" alt="Large Image" width="140" height="90" />');
-    });
-  }
-  
-//On Click Details  
-  $('.gvcsList').on('tap', function(){
-    mongoGetGVCSDetails();
-    console.log('ID: '+this._id);
-    console.log('gvcsDetailID: '+gvcsDetailID);
-    /*
-if(gvcsDetailID == this._id){
-      
-      $.mobile.changePage('#itemDetails');
-    }
 */
-    return false;   
-  });
+  
+
+  
+
   
 //Thank you page for Email 
-  $('#emailForm').submit(function(){
+  /*
+$('#emailForm').submit(function(){
     $('#send').on('tap', function(){
       $.mobile.changePage('#thanks');
       $('#name').val(''); 
       $('#email').val('');  
       $('#mess').val('');  
-   
     });
     return false;
    }); 
+*/
   
 //Add to MongoHQ
-  function mongoCreateDocument(){
+ /*
+ function mongoCreateDocument(){
 	var obj = {  "imgSrc" : "img/mat/thumb/bioplasticExtruder",
 	             "name" : "Bioplastic Extractor",
   	           "status" : "Research"
@@ -227,6 +292,7 @@ if(gvcsDetailID == this._id){
     }
    });
   }
+*/
 
 
 

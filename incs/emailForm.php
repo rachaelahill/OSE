@@ -6,5 +6,5 @@
   $mess = $_POST['mess'];
   $header = "Reply to: $email";
   
-   mail($emailTo, $subject, $mess, $header) or die("Error");
+   mail($emailTo, $subject, $mess, $header) or die("Error");   
 ?>
