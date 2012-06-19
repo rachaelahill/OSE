@@ -42,7 +42,7 @@ $(document).ready(function() {
       var worksWith = $('#worksItem');
       var title1 = $('#listTitle1');
       var title2 = $('#listTitle2');
-      var video = $('#vimeoPlayer');
+      var video = $('#videoPlayer');
       
      /*
  if($('#titleDetail').text().length >= 15)
@@ -55,65 +55,8 @@ $(document).ready(function() {
       headingItems.html('<h3>'+d.name+'</h3><p>'+d.status+'</p>');
       ovrView.html('<p>'+d.ovrView+'</p>');
       video.attr('src',''+d.video+'');
-      console.log(d.video);
-      
-      
-      
-      
-      /* title1.html('<h2>'+d.listingTitle1+'</h2>'); */
-     /*
- console.log(d.listing1.name);
-      use.html('<li data-theme="c" data-transition="fade" class="gvcsData"><a href="#" data-id="'+d._id.$oid+'"><img src="'+d.imgSrc+'" alt="Thumbnail" width="100" height="100" /><h3>'+d.name+'</h3><p>'+d.status+'</p></a></li>');
-*/
-      
+      console.log(d.video);    
   };
-  
-//Vimeo
-/*
-function vimeoGetVideo(v){
-  console.log('THIS IS WHEN THE VIDEO SHOULD PLAY');
-  var vimeoURL=''+v.video+'';
-  var vimeoObj={
-    width:300,
-    height:169,
-    byline:false,
-    title:false,
-    portrait:false,
-    color:'a3bd40'
-  };
-  
-  $.getJSON(vimeoURL, vimeoObj, function(vidData){
-    var vimeoHTML = $(document.createElement('iframe').attr({src:vidData[0].url, width:vimeoObj.width, height:vimeoObj.height, frameborder:0}));
-    $('#vimeoBox').append(vimeoHTML);
-      console.log('HTML: ',vimeoHTML);
-  });
-  console.log(vimeoURL);
-  console.log(vimeoObj); 
-};
-*/  
-  
-  
-  
-  /*
-function vimeoGetVideo(){
-    $.ajax({
-      url: 'http://vimeo.com/api/v2/video/',
-      type: 'GET',
-      dataType: 'json',
-      data: {
-          'video_id':'29562529',
-          'output':'json'
-      },
-      success: function(r) {
-        console.log("Vimeo: success",r);
-      },
-      error: function(data) {
-        console.log("Vimeo: fail",data);
-        return false;
-      }
-     });
-  }
-*/
    
 //******************************************** Start Agriculture ***********************************  
 //Returns gvcsList(Agri) from MongoHQ
@@ -325,9 +268,12 @@ $('#indu').on('tap', function(){
 
 //Thank you page for Email 
   $('#emailForm').submit(function(){
-    $('#send').on('tap', function(){
+  //make ajax call
+    /*
+$('#send').on('tap', function(){
       $.mobile.changePage('#thanks');
     });
+*/
      /* return false; */
    });
    
