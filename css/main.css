@@ -1,9 +1,42 @@
 /*-------------------------------Information------------------------------
 Author: Rachael Hill
-Date: 06/18/2012
+Date: 06/19/2012
 Project: OPS Mobile App
 Client: Open Source Ecology
 /*-------------------------------Themes------------------------------*/
+
+/****************Browser***************/
+a.btn:link{
+  background: -webkit-linear-gradient(top, #f2d399, #bfa169);
+  text-decoration: none;
+  font: 1em helvetica, arial, sans-serif;
+  font-weight: 900;
+  color: #000;
+  text-shadow: none;
+  border: .063em solid #a6874e;
+}
+
+a.btn:hover{
+  background: #f2d399;
+  text-decoration: none;
+  font: 1em helvetica, arial, sans-serif;
+  font-weight: 900;
+  color: #000;
+  text-shadow: none;
+  border: .063em solid #a6874e;
+}
+
+a.btn:active{
+  background: #a6874e;
+  text-decoration: none;
+  font: 1em helvetica, arial, sans-serif;
+  font-weight: 900;
+  color: #000;
+  border: .063em solid #a6874e;
+}
+
+/****************Mobile***************/
+
 .ui-body-a,.ui-overlay-a{
   background: #c5d9b2;
   color: #000;

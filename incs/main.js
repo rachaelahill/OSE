@@ -54,8 +54,7 @@ $(document).ready(function() {
       imgItems.attr('src', ''+d.largeImg+''); 
       headingItems.html('<h3>'+d.name+'</h3><p>'+d.status+'</p>');
       ovrView.html('<p>'+d.ovrView+'</p>');
-      video.attr('src',''+d.video+'');
-      console.log(d.video);    
+      video.html('<iframe src="'+d.video+'" frameborder="0" allowfullscreen></iframe>');  
   };
    
 //******************************************** Start Agriculture ***********************************  
@@ -250,40 +249,39 @@ $('#indu').on('tap', function(){
 
 //******************************************** End Transportation ***********************************  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Thank you page for Email 
-  $('#emailForm').submit(function(){
-  //make ajax call
-    /*
-$('#send').on('tap', function(){
-      $.mobile.changePage('#thanks');
-    });
-*/
-     /* return false; */
-   });
-   
- /*
-  $('#send').on('tap', function(){
-      $('#name').val('');
-      $('#email').val('');
-      $('#mess').val('');
-   });
-*/ 
+//Email PHP AJAX Call
+  function phpSendEmail(){
+    $.ajax({
+      url: '../incs/emailForm.php',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        name: $('#name').val(),
+        email: $('#email').val(),
+        mess: $('#mess').val()
+      },
+      success: function(r) {
+        console.log("Email: success",r);
+        setTimeout(function(){
+          $.mobile.changePage('#thanks'); 
+          $('#name').val('');
+          $('#email').val('');
+          $('#mess').val('');
+        }, 1000)
+      },
+      error: function(data) {
+        console.log("Email: fail",data);
+        return false;
+      }
+     });
+  }
+//Clears input fields when clicking back btn  
+  $('#back').on('click', function(){
+    $('#name').val('');
+    $('#email').val('');
+    $('#mess').val('');
+  });
+  
   
 //Add to MongoHQ
  /*
@@ -310,9 +308,6 @@ $('#send').on('tap', function(){
    });
   }
 */
-
-
-
 
 /*   mongoCreateDocument(); */
 });
