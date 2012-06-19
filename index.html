@@ -45,11 +45,11 @@
 				<p id="home-content">Open Source Ecology is a network that has been creating the Global Village Construction Set (GVCS), which is an open source, low cost, and high performance technology platform.</p>
 				<h2>The Team:</h2>
 				<ul data-role="listview" data-inset="true" id="teamList">
-          <li data-theme="c"><a href="#mjDetail" data-transition="fade"><h3>Marcin Jakubowski</h3><p>Founder & Director</p></a></li>
-				  <li data-theme="c"><a href="#isDetail" data-transition="fade"><h3>Isaiah Saxon</h3><p>Media Director</p></a></li>	
-				  <li data-theme="c"><a href="#ahDetail" data-transition="fade"><h3>Adrian Hong</h3><p>Advisor</p></a></li>	
-				  <li data-theme="c"><a href="#ecDetail" data-transition="fade"><h3>Elifarley Cruz</h3><p>Web Administrator</p></a></li>	
-				  <li data-theme="c"><a href="#ldDetail" data-transition="fade"><h3>Luis Diaz</h3><p>Business Consultant</p></a></li>	
+          <li data-theme="c"><a href="#mjDetail" data-transition="fade" id="marcin"><h3>Marcin Jakubowski</h3><p>Founder & Director</p></a></li>
+				  <li data-theme="c"><a href="#isDetail" data-transition="fade" id="isaiah"><h3>Isaiah Saxon</h3><p>Media Director</p></a></li>	
+				  <li data-theme="c"><a href="#ahDetail" data-transition="fade" id="adrian"><h3>Adrian Hong</h3><p>Advisor</p></a></li>	
+				  <li data-theme="c"><a href="#ecDetail" data-transition="fade" id="cruz"><h3>Elifarley Cruz</h3><p>Web Administrator</p></a></li>	
+				  <li data-theme="c"><a href="#ldDetail" data-transition="fade" id="luis"><h3>Luis Diaz</h3><p>Business Consultant</p></a></li>	
 				</ul>
 			</section>
 			<footer data-role="footer" data-position="fixed">
@@ -122,7 +122,7 @@
 			
 			<header data-role="header" data-theme="a">
 				<a data-rel="back" data-theme="b">Back</a>
-				<h2 style="width: 9.5em;">Marcin Jakubowski</h2>
+				<h2 style="width: 9.5em;" id="titleMember">Marcin Jakubowski</h2>
 			</header>
 
 			<section data-role="content">	
@@ -132,12 +132,6 @@
               Email
           </a>
         </p>
-				<!--
-<ul id="email">
-				  <li>Contact:</li>
-				  <li><a href="mailto:opensourceecology@gmail.com">Marcin Jakubowski</a></li>
-				</ul>
--->
 
 				<ul class="details">
 				  <li>Born in Poland</li>
@@ -172,10 +166,11 @@
 
 			<section data-role="content">	
 				<img src="img/team/isaiah.jpg" alt="Isaiah Saxon" width="100" height="100" id="image"/>	
-				<ul id="email">
-				  <li>Contact:</li>
-				  <li><a href="mailto:isaiah@encyclopediapictura.com">Isaiah Saxon</a></li>
-				</ul>
+				<p>
+				  <a data-role="button" data-inline="true" data-transition="fade" data-theme="z" href="#emailForm">
+              Email
+          </a>
+        </p>
 
 				<ul class="details">
 				  <li>Lives in Aptos, Califorinia</li>
@@ -209,10 +204,11 @@
 
 			<section data-role="content">	
 				<img src="img/team/ah.jpg" alt="Adrian Hong" width="100" height="100" id="image"/>	
-				<ul id="email">
-				  <li>Contact:</li>
-				  <li>No contact info.</li>
-				</ul>
+				<p>
+				  <a data-role="button" data-inline="true" data-transition="fade" data-theme="z" href="#emailForm">
+              Email
+          </a>
+        </p>
 
 				<ul class="details">
 				  <li>Founder and Director of The Pegasus Project</li>
@@ -245,10 +241,11 @@
 
 			<section data-role="content">	
 				<img src="img/team/ec.jpg" alt="Elifarley Cruz" width="100" height="100" id="image"/>	
-				<ul id="email">
-				  <li>Contact:</li>
-				  <li><a href="mailto:elifarley@opensourceecology.com">Elifarley Cruz</a></li>
-				</ul>
+				<p>
+				  <a data-role="button" data-inline="true" data-transition="fade" data-theme="z" href="#emailForm">
+              Email
+          </a>
+        </p>
 
 				<ul class="details">
 				  <li>A software engineer from Brazil</li>
@@ -280,10 +277,11 @@
 
 			<section data-role="content">	
 				<img src="img/team/ld.jpg" alt="Elifarley Cruz" width="100" height="100" id="image"/>	
-				<ul id="email">
-				  <li>Contact:</li>
-				  <li><a href="mailto:lad93978@yahoo.com">Luis Diaz</a></li>
-				</ul>
+				<p>
+				  <a data-role="button" data-inline="true" data-transition="fade" data-theme="z" href="#emailForm">
+              Email
+          </a>
+        </p>
 
 				<ul class="details">
 				  <li>Six years of progressive experience in formulation, implementation and execution of business and marketing strategies</li>
@@ -389,6 +387,9 @@
 				  </li>	
 -->
 				</ul>
+				
+				<div id="vimeoBox">
+				</div>
 			</section>
 			
 			<footer data-role="footer" data-position="fixed">
@@ -419,7 +420,7 @@
 			     <p id="statusDetail"></p>
 			   </div><!-- /detailHead -->
 			   <p id="ovrView"></p>
-			   <h2>Uses:</h2>
+			   <h2 id="listTitle1"></h2>
 				 <ul data-role="listview" data-inset="true" id="useItem">
           <!--
 <li data-theme="c"><a href="#inducDetail" data-transition="fade">
@@ -431,7 +432,7 @@
 -->
 				 </ul>
 				
-				<h2>Works With:</h2>
+				<h2 id="listTitle2"></h2>
 				<ul data-role="listview" data-inset="true" id="worksItem">
           <!--
 <li data-theme="c"><a href="#tractorDetail" data-transition="fade">
@@ -451,6 +452,7 @@
 				  </li>	
 -->
 				</ul>
+				<!-- <iframe src="" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen id="vimeoBox"></iframe> -->
 			</section>
 			
 			<footer data-role="footer" data-position="fixed">
@@ -525,12 +527,6 @@
 		
 		</article>
 		<!-- +++++++++  end Donate Page  +++++++++++ -->
-
-
-
-		
-
-		
 
   	</body>
 
