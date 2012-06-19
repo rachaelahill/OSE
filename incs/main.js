@@ -42,7 +42,7 @@ $(document).ready(function() {
       var worksWith = $('#worksItem');
       var title1 = $('#listTitle1');
       var title2 = $('#listTitle2');
-      /* var video = $('#vimeoBox'); */
+      var video = $('#vimeoPlayer');
       
      /*
  if($('#titleDetail').text().length >= 15)
@@ -54,11 +54,8 @@ $(document).ready(function() {
       imgItems.attr('src', ''+d.largeImg+''); 
       headingItems.html('<h3>'+d.name+'</h3><p>'+d.status+'</p>');
       ovrView.html('<p>'+d.ovrView+'</p>');
-    /*
-  video.attr('src', ''+d.video+'');
-      console.log(video);
+      video.attr('src',''+d.video+'');
       console.log(d.video);
-*/
       
       
       
