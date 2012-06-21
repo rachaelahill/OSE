@@ -1,5 +1,13 @@
+/*-------------------------------Information------------------------------
+Author: Rachael Hill
+Date: 06/21/2012
+Project: OSE Mobile App
+Client: Open Source Ecology
+*/
 $(document).ready(function() {
   var gvcsRawData;
+  var allData;
+  var clickedCategory;
   
 //List of GVCS
   function createGVCSList(l){
@@ -8,20 +16,13 @@ $(document).ready(function() {
       $('.gvcsList').append('<li data-theme="c" data-transition="fade" class="gvcsData"><a href="#" data-id="'+this._id.$oid+'"><img src="'+this.imgSrc+'" alt="Thumbnail" width="100" height="100" /><h3>'+this.name+'</h3><p>'+this.status+'</p></a></li>'); 
     });
     
-    console.log('Name: '+l[0].name);
-    console.log('ID: '+l[0]._id.$oid);
-    
     $('.gvcsList').listview('refresh');
     
 //On Click Details    
-    console.log("at this very moment I am attacking the click to *ALL* list items");
     $('.gvcsData a').on('tap', function(){
-        console.log('clicked');
         var clickedOn = $(this).data('id');
       $(gvcsRawData).each(function(){
         if(this._id.$oid == clickedOn){
-          console.log(this.name);
-          console.log('item details would show here', this);
           createGVCSDetail(this);
           $.mobile.changePage('#itemDetails');
         }
@@ -31,41 +32,74 @@ $(document).ready(function() {
   }  
   
 //Detail page of GVCS
-  function createGVCSDetail(d){ 
-      console.log('Details: ');
-      console.log(d);
-      console.log(d.largeImg);
-      var headingItems = $('#headingItem');
-      var imgItems = $('#imgItem');
-      var ovrView = $('#ovrView');
-      var use = $('#useItem');
-      var worksWith = $('#worksItem');
-      var title1 = $('#listTitle1');
-      var title2 = $('#listTitle2');
-      var video = $('#videoPlayer');
+  function createGVCSDetail(d){   
+    var headingItems = $('#headingItem');
+    var imgItems = $('#imgItem');
+    var ovrView = $('#ovrView');
+    var use = $('#usesList');
+    var worksWith = $('#worksWith');
+    var title1 = $('#listTitle1');
+    var title2 = $('#listTitle2');
+    var video = $('#videoPlayer');
       
-     /*
- if($('#titleDetail').text().length >= 15)
-      {
-        console.log('TOO LONG!');
-        ovrView.css('padding-top', '.625em');
-      }
+    imgItems.attr('src', ''+d.largeImg+''); 
+    headingItems.html('<h3>'+d.name+'</h3><p>'+d.status+'</p>');
+    ovrView.html('<p>'+d.ovrView+'</p>');
+    video.html('<iframe src="'+d.video+'" frameborder="0" allowfullscreen></iframe>');
+    /* console.log(d.use); */
+      
+    /*
+$(d.use).each(function(i, value){
+      $(allData).each(function(){
+        console.log('ALL: ',this);
+        console.log('VALUE:', value);
+        if(this._id.$oid == value){
+          console.log('NAME: ',this.name);
+          $(this).each(function(){
+            use.append('<li data-theme="c" data-transition="fade" class="usesData"><a href="#" data-id="'+this._id.$oid+'"><img src="'+this.imgSrc+'" alt="Thumbnail" width="100" height="100" /><h3>'+this.name+'</h3><p>'+this.status+'</p></a></li>'); 
+          });
 */
-      imgItems.attr('src', ''+d.largeImg+''); 
-      headingItems.html('<h3>'+d.name+'</h3><p>'+d.status+'</p>');
-      ovrView.html('<p>'+d.ovrView+'</p>');
-      video.html('<iframe src="'+d.video+'" frameborder="0" allowfullscreen></iframe>');  
-  };
+        
+      //On Click Details    
+         /*
+ console.log("at this very moment I am attacking the click to *ALL* list items");
+          $('.usesData a').on('tap', function(){
+              console.log('clicked');
+              use.listview('refresh');
+              var clickedOn = $(this).data('id');
+              console.log('Value: ',value);
+              
+            $(allData).each(function(){
+              console.log('#######',this);
+              if(this._id.$oid == clickedOn){
+                console.log(this.name);
+                console.log('item details would show here', this);
+                createGVCSDetail(this);
+                $.mobile.changePage('#itemDetails');
+              }
+            });
+            return false;   
+          });
+
+        }
+      });
+    });
+*/
+  }
    
-//******************************************** Start Agriculture ***********************************  
-//Returns gvcsList(Agri) from MongoHQ
+//******************************************** Start Category ***********************************  
+//Returns Data From Selected Category
   function mongoGetGVCSList(){
     $.ajax({
       url: 'https://api.mongohq.com/databases/oseDB/collections/gvcsList/documents',
       type: 'GET',
+      headers: {'Content-Type':'application/json'},
       dataType: 'json',
       data: {
-        "_apikey":"xoxqi26x0rwv9loxhdfa"
+        '_apikey':'xoxqi26x0rwv9loxhdfa',
+        'q':JSON.stringify({
+            'cat': clickedCategory
+        })
       },
       success: function(r) {
 /*         console.log("Mongo: success",r); */
@@ -78,177 +112,91 @@ $(document).ready(function() {
       }
      });
   }
+
+//Returns All Data From The Collection  
+  function mongoGetGVCSAll(){
+    $.ajax({
+      url: 'https://api.mongohq.com/databases/oseDB/collections/gvcsList/documents',
+      type: 'GET',
+      headers: {'Content-Type':'application/json'},
+      dataType: 'json',
+      data: {
+        '_apikey':'xoxqi26x0rwv9loxhdfa'
+      },
+      success: function(r) {
+/*         console.log("Mongo: success",r); */
+        allData = r;
+      },
+      error: function(data) {
+        console.log("Mongo: fail",data);
+        return false;
+      }
+     });
+  }
   
 //On Click Agriculture  
   $('#agri').on('tap', function(){
     $('.title').html('<h1>Agriculture</h1>');
+    clickedCategory = 'agri';
+    mongoGetGVCSAll();
     mongoGetGVCSList();
     $.mobile.changePage('#gvcsDetails');
     return false;   
   });
   
-//******************************************** End Agriculture ***********************************  
-  
-//******************************************** Start Energy ***********************************  
-//Returns gvcsEne from MongoHQ
-  function mongoGetGVCSEne(){
-    $.ajax({
-      url: 'https://api.mongohq.com/databases/oseDB/collections/gvcsEne/documents',
-      type: 'GET',
-      dataType: 'json',
-      data: {
-        "_apikey":"xoxqi26x0rwv9loxhdfa"
-      },
-      success: function(r) {
-/*         console.log("Mongo: success",r[1].title); */
-        createGVCSList(r);
-        gvcsRawData = r;
-      },
-      error: function(data) {
-        console.log("Mongo: fail",data);
-        return false;
-      }
-     });
-  }
-  
 //On Click Energy
   $('#ener').on('tap', function(){
     $('.title').html('<h1>Energy</h1>');
-    mongoGetGVCSEne();
+    clickedCategory = 'ene';
+    mongoGetGVCSAll();
+    mongoGetGVCSList();
     $.mobile.changePage('#gvcsDetails');
     return false;   
-  });   
-  
-//******************************************** End Energy ***********************************  
-  
-//******************************************** Start Habitat *********************************** 
-//Returns gvcsEne from MongoHQ
-  function mongoGetGVCSHab(){
-    $.ajax({
-      url: 'https://api.mongohq.com/databases/oseDB/collections/gvcsHab/documents',
-      type: 'GET',
-      dataType: 'json',
-      data: {
-        "_apikey":"xoxqi26x0rwv9loxhdfa"
-      },
-      success: function(r) {
-/*         console.log("Mongo: success",r[1].title); */
-        createGVCSList(r);
-        gvcsRawData = r;
-      },
-      error: function(data) {
-        console.log("Mongo: fail",data);
-        return false;
-      }
-     });
-  }
-  
-//On Click Energy
+  });
+ 
+//On Click Habitat
   $('#habi').on('tap', function(){
     $('.title').html('<h1>Habitat</h1>');
-    mongoGetGVCSHab();
+    clickedCategory = 'hab';
+    mongoGetGVCSAll();
+    mongoGetGVCSList();
     $.mobile.changePage('#gvcsDetails');
     return false;   
-  });  
-
-//******************************************** End Habitat ***********************************   
+  }); 
  
-//******************************************** Start Industry ***********************************   
-//Returns gvcsInd from MongoHQ
-  function mongoGetGVCSInd(){
-    $.ajax({
-      url: 'https://api.mongohq.com/databases/oseDB/collections/gvcsInd/documents',
-      type: 'GET',
-      dataType: 'json',
-      data: {
-        "_apikey":"xoxqi26x0rwv9loxhdfa"
-      },
-      success: function(r) {
-/*         console.log("Mongo: success",r[1].title); */
-        createGVCSList(r);
-        gvcsRawData = r;
-      },
-      error: function(data) {
-        console.log("Mongo: fail",data);
-        return false;
-      }
-     });
-  }
-
 //On Click Industry
-$('#indu').on('tap', function(){
+  $('#indu').on('tap', function(){
     $('.title').html('<h1>Industry</h1>');
-    mongoGetGVCSInd();
+    clickedCategory = 'ind';
+    mongoGetGVCSAll();
+    mongoGetGVCSList();
     $.mobile.changePage('#gvcsDetails');
     return false;   
-  })  
+  });
 
-//******************************************** End Industry ***********************************   
-
-//******************************************** Start Materials *********************************** 
-//Returns gvcsMat from MongoHQ
-  function mongoGetGVCSMat(){
-    $.ajax({
-      url: 'https://api.mongohq.com/databases/oseDB/collections/gvcsMat/documents',
-      type: 'GET',
-      dataType: 'json',
-      data: {
-        "_apikey":"xoxqi26x0rwv9loxhdfa"
-      },
-      success: function(r) {
-/*         console.log("Mongo: success",r[1].title); */
-        createGVCSList(r);
-        gvcsRawData = r;
-      },
-      error: function(data) {
-        console.log("Mongo: fail",data);
-        return false;
-      }
-     });
-  }
-  
 //On Click Materials
   $('#mate').on('tap', function(){
     $('.title').html('<h1>Materials</h1>');
-    mongoGetGVCSMat();
+    clickedCategory = 'mat';
+    mongoGetGVCSAll();
+    mongoGetGVCSList();
     $.mobile.changePage('#gvcsDetails');
     return false;   
   });  
 
-//******************************************** End Materials ***********************************   
-
-//******************************************** End Transportation ***********************************   
-//Returns gvcsTran from MongoHQ
-  function mongoGetGVCSTran(){
-    $.ajax({
-      url: 'https://api.mongohq.com/databases/oseDB/collections/gvcsTran/documents',
-      type: 'GET',
-      dataType: 'json',
-      data: {
-        "_apikey":"xoxqi26x0rwv9loxhdfa"
-      },
-      success: function(r) {
-        console.log("Mongo: success",r[1].title);
-        createGVCSList(r);
-        gvcsRawData = r;
-      },
-      error: function(data) {
-        console.log("Mongo: fail",data);
-        return false;
-      }
-     });
-  }
-  
 //On Click Transportation
   $('#tran').on('tap', function(){
     $('.title').html('<h1>Transportation</h1>');
-    mongoGetGVCSTran();
+    clickedCategory = 'tran';
+    mongoGetGVCSAll();
+    mongoGetGVCSList();
     $.mobile.changePage('#gvcsDetails');
     return false;   
-  });  
+  });         
+    
+//******************************************** End Category ***********************************    
 
-//******************************************** End Transportation ***********************************  
-
+//******************************************** End Email ***********************************    
 //Email PHP AJAX Call
   function phpSendEmail(){
     $.ajax({
@@ -275,24 +223,46 @@ $('#indu').on('tap', function(){
       }
      });
   }
+  
 //Clears input fields when clicking back btn  
   $('#back').on('click', function(){
     $('#name').val('');
     $('#email').val('');
     $('#mess').val('');
   });
+
+//******************************************** End Email ***********************************    
   
+//******************************************** Creates Changes to DB ***********************************      
+  function mongoAdd(){
+    $.ajax({
+      url: 'https://api.mongohq.com/databases/oseDB/collections/gvcsEne/documents',
+      type: 'GET',
+      dataType: 'json',
+      data: {
+        "_apikey":"xoxqi26x0rwv9loxhdfa"
+      },
+      success: function(r) {
+        console.log("Mongo: success",r);
+        $(r).each(function(){
+/*           console.log(this); */
+          this.cat = 'ene';
+          delete this._id;
+          mongoCreateDocument(this);
+        })
+      },
+      error: function(data) {
+        console.log("Mongo: fail",data);
+        return false;
+      }
+     });
+  }
+  /* mongoAdd(); */
   
 //Add to MongoHQ
- /*
- function mongoCreateDocument(){
-	var obj = {  "imgSrc" : "img/mat/thumb/bioplasticExtruder",
-	             "name" : "Bioplastic Extractor",
-  	           "status" : "Research"
-	}
-	
+  function mongoCreateDocument(obj){
 	$.ajax({
-    url: 'https://api.mongohq.com/databases/oseDB/collections/gvcsMat/documents',
+    url: 'https://api.mongohq.com/databases/oseDB/collections/gvcsList/documents',
     type: 'POST',
     dataType: 'json',
     data: {
@@ -307,7 +277,6 @@ $('#indu').on('tap', function(){
     }
    });
   }
-*/
 
 /*   mongoCreateDocument(); */
 });
