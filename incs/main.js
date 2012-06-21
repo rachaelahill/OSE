@@ -281,6 +281,11 @@ $(document).ready(function() {
      });
   }
   
+  $('#emailForm').submit(function{
+  	phpSendEmail();
+  	return false;
+  });
+  
 //Clears input fields when clicking back btn  
   $('#back').on('click', function(){
     $('#name').val('');
