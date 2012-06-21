@@ -155,6 +155,10 @@ a.btn:active{
   margin: 0 auto;
 }
 
+#ovrView{
+  padding: 10px;
+}
+
 /*-------------------------------Details------------------------------*/
 .details{
   position: relative;

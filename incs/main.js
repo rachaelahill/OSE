@@ -32,59 +32,116 @@ $(document).ready(function() {
   }  
   
 //Detail page of GVCS
-  function createGVCSDetail(d){   
+  function createGVCSDetail(d){
     var headingItems = $('#headingItem');
     var imgItems = $('#imgItem');
     var ovrView = $('#ovrView');
     var use = $('#usesList');
-    var worksWith = $('#worksWith');
+    var worksWith = $('#worksList');
     var title1 = $('#listTitle1');
     var title2 = $('#listTitle2');
     var video = $('#videoPlayer');
-      
+        use.empty();
+        worksWith.empty();
+
     imgItems.attr('src', ''+d.largeImg+''); 
     headingItems.html('<h3>'+d.name+'</h3><p>'+d.status+'</p>');
     ovrView.html('<p>'+d.ovrView+'</p>');
     video.html('<iframe src="'+d.video+'" frameborder="0" allowfullscreen></iframe>');
-    /* console.log(d.use); */
-      
-    /*
-$(d.use).each(function(i, value){
+  
+  //If there is no video remove html tag
+    if(d.video == '')
+    {
+      video.remove();
+      setTimeout(function(){
+        $('#videoBox').append('<p id="videoPlayer"></p>');
+      }, 1000);
+    }
+
+  //If there is no Uses remove title
+    if(d.use == '')
+    {
+      title1.html('');
+      title1.css('padding', '0');
+    }else{
+      title1.html('Uses:');
+    }
+    
+  //If there is no Works With remove title  
+    if(d.works == ''){
+      title2.html('');
+      title2.css('padding', '0');
+    }else{
+      title2.html('Works With:');
+    }
+    
+//Uses:      
+    $(d.use).each(function(i, value){
+      console.log('VALUE:', value);
       $(allData).each(function(){
         console.log('ALL: ',this);
-        console.log('VALUE:', value);
         if(this._id.$oid == value){
           console.log('NAME: ',this.name);
           $(this).each(function(){
             use.append('<li data-theme="c" data-transition="fade" class="usesData"><a href="#" data-id="'+this._id.$oid+'"><img src="'+this.imgSrc+'" alt="Thumbnail" width="100" height="100" /><h3>'+this.name+'</h3><p>'+this.status+'</p></a></li>'); 
           });
-*/
-        
-      //On Click Details    
-         /*
- console.log("at this very moment I am attacking the click to *ALL* list items");
+          
+        //On Click Details    
+          console.log("at this very moment I am attacking the click to *ALL* list items");
           $('.usesData a').on('tap', function(){
               console.log('clicked');
               use.listview('refresh');
               var clickedOn = $(this).data('id');
               console.log('Value: ',value);
-              
-            $(allData).each(function(){
-              console.log('#######',this);
-              if(this._id.$oid == clickedOn){
-                console.log(this.name);
-                console.log('item details would show here', this);
-                createGVCSDetail(this);
-                $.mobile.changePage('#itemDetails');
-              }
-            });
-            return false;   
+                
+              $(allData).each(function(){
+                console.log('#######',this);
+                if(this._id.$oid == clickedOn){
+                  console.log(this.name);
+                  console.log('item details would show here', this);
+                  createGVCSDetail(this);
+                  $.mobile.changePage('#itemDetails');
+                }
+              });
+            return false;
           });
-
         }
       });
     });
-*/
+    
+//Works With:    
+    $(d.works).each(function(i, value){
+      console.log('VALUE:', value);
+      $(allData).each(function(){
+        console.log('ALL: ',this);
+        if(this._id.$oid == value){
+          console.log('NAME: ',this.name);
+          $(this).each(function(){
+            worksWith.append('<li data-theme="c" data-transition="fade" class="worksData"><a href="#" data-id="'+this._id.$oid+'"><img src="'+this.imgSrc+'" alt="Thumbnail" width="100" height="100" /><h3>'+this.name+'</h3><p>'+this.status+'</p></a></li>'); 
+          });
+          
+      //On Click Details    
+          console.log("at this very moment I am attacking the click to *ALL* list items");
+          $('.worksData a').on('tap', function(){
+              console.log('clicked');
+              worksWith.listview('refresh');
+              var clickedOn = $(this).data('id');
+              console.log('Value: ',value);
+                
+              $(allData).each(function(){
+                console.log('#######',this);
+                if(this._id.$oid == clickedOn){
+                  console.log(this.name);
+                  console.log('item details would show here', this);
+                  createGVCSDetail(this);
+                  $.mobile.changePage('#itemDetails');
+                }
+              });
+            return false;
+          });
+        }
+      });
+    });
   }
    
 //******************************************** Start Category ***********************************  
@@ -118,10 +175,10 @@ $(d.use).each(function(i, value){
     $.ajax({
       url: 'https://api.mongohq.com/databases/oseDB/collections/gvcsList/documents',
       type: 'GET',
-      headers: {'Content-Type':'application/json'},
       dataType: 'json',
       data: {
-        '_apikey':'xoxqi26x0rwv9loxhdfa'
+        '_apikey':'xoxqi26x0rwv9loxhdfa',
+        'limit': 100
       },
       success: function(r) {
 /*         console.log("Mongo: success",r); */
